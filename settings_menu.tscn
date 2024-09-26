@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cmjwfgvl65ylp"]
+
+[node name="Settings Menu" type="Window"]
+auto_translate_mode = 1
+
+[node name="PopupMenu" type="PopupMenu" parent="."]
+
+[node name="CheckButton" type="CheckButton" parent="PopupMenu"]
+offset_right = 44.0
+offset_bottom = 24.0
+text = "Fullscreen"

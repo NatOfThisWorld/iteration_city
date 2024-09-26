@@ -1,0 +1,161 @@
+Todo:
+	- Create a prototype region (will become the save-game file - consider making city the save-game for import/export)
+		-> For now create a bunch of buttons that will open an instance (?) of a city
+		-> You should only be able to have a single city open at once
+	- Create a prototype city (import/export available)
+		-> It can be a blank canvas for now
+	- Create a prototype building (import/export available)
+	- Create a prototype citizen
+	- Create a prototype UI
+
+** Gameplay notes **
+	-> Main interaction; this is a city-builder game at its heart
+		- Should be at the city level
+		- Build roads
+		- Define lots
+		- Build infrastructure
+		- Add services (police/fire/hospital/etc)
+		- Expand via land purchase
+		- Set policies (?)
+	-> Detail interaction (building)
+		- Change decor
+		- Add appliances/furniture
+		- Set prices, wages, benefits
+	-> Game progression
+		- Controlled by PID?
+		- Population or income achievements?
+		- TBD
+		- TBD
+
+** Initial game conditions **
+	- Blank slate (nothing exists in cities)
+	- Regional government provides funding to start a city
+	- Various inter-city connections made available (typical: roads, train)
+	- Initially, lots are owned by the city (and purchased by citizens or businesses moving in)
+	- Non-domestic businesses will be attracted by cheap land and utilities; high prices will slow development
+	- Utilities will NOT be time-gated (except in tutorial), but more specialized utilities will have much higher operating costs
+	- Upkeep is required for roads, utilities, etc.
+	
+** Tutorial **
+	- TBD
+
+** Time **
+30 minutes a day at timespeed = 1
+15 minutes a day at timespeed = 2
+ 5 minutes a day at timespeed = 6 (render less, you'll be focusing on simulation calcs)
+	
+** Terrain **
+	- Grass
+	- Rock
+	- Dirt
+	- Gravel
+	- Water
+	- Farmland (special)
+	- Other?
+	- Defined by biome; world generation could be created later. For now set manually
+	
+** Resources **
+	- Local can be cheaper (no transport costs)
+	- Buying in bulk can be cheaper
+	- Spawn on top of terrain, must be harvested
+	- Some are renewable, others are not
+	- Non-renewable resources will still be achievable, but at a lower rate; better to import then
+	- Prices will depend on availability on the market
+	- Types of resource:
+		-> Rock
+		-> Ore (metal)
+		-> Wood
+		-> Water
+
+**Attraction to city** (General attraction)
+ Increase if 
+	- There are jobs
+	- There is entertainment
+	- There is commerce (things to buy)
+	- There are friends to see
+	- Strong health services
+	- Small constant "exploration" type value
+	- Cost of living (tax, other) is low
+	- Quality of life is high
+
+ Decrease if
+	- There is significant pollution
+	- There is significant crime
+	- There is significant noise
+	- There is a lack of services
+
+ Types of Attraction
+	- Wants to live in the city (too vague)
+	- Wants to work in the city (majority)
+	- Wants to shop in the city
+	- Wants leisure in the city
+	- Wants education in the city
+	- Park attraction factor
+	- Walkable attraction factor
+	- Commute attraction factor
+	- Night life / entertainment attraction factor
+	NOTE: When attracting a citizen, they'll either be generic or specialized.
+		-> If attracted by a job, they'll be specialized
+		-> The more specialized a job, the more specialized the citizen
+		-> Roll the dice as to whether there will really be a job for them - no guarantee
+
+**What creates crime?**
+	- Poverty
+	- Homelessness
+	- Pollution
+	- Fire damage?
+	- Government corruption?
+	- ?
+ 
+**How to move a citizen into the city**
+	- Lots must be available (rentable or for sale)
+	- In multi-family dwellings you must select which unit
+	- Citizens can automatically move in, if enabled
+	- Manual move-in is possible.
+	- If city is desirable there will be a queue of potential citizens
+	- Select one, then purchase based on budget
+	- If renting, the citizen must have an income high enough for rent
+	- If buying, the citizen must have an income high enough for mortgage, with enough money for down payement
+	
+** Random notes **
+	- Citizens who pay off their mortgage have more potential to start a business
+	
+** Citizen Traits **
+	- Punctuality
+	- Work ethic
+	- Frugality
+	- Physique (body shaming potential?)
+	- Risk aversion (more likely to take a 9-5 job)
+	- Greed
+	- Education (Pre-K->High School->Some College)
+		-> While education indicates success, business opportunities are available to all education levels
+		-> More educated citizens are likely to have higher earning 9-5 jobs
+		-> Business owners stand to earn a lot
+		
+** Businesses **
+	- Are owned
+	- Have names
+	- Have income and expenses
+	- Provide products, services, or both
+	- Owners can be citizens, or people who live outside the city
+	- Some types can be run from a residence
+	- Some types require a physical location
+	- Can employ multiple people
+		-> If having trouble recruiting, will increase benefits (pay/health/vacation/etc)
+		-> If having problems with profit, will decrease benefits (pay/health/vacation/etc)
+		-> If an employee loses pay or benefits, will be more likely to leave job
+		-> Employment may have education requirements
+	- Have domestic or exported sales (services are domestic only, unless it's a travelling service like plumber)
+	- Require and/or generate resources
+	
+** Buildings **
+	- Are owned (or bank-owned/vacant)
+		-> By businesses/citizens
+	- Require time to build
+	- Require resources to build
+		-> Resource cost scales with size
+	- Require labor to build
+		-> Imported labor more expensive
+		-> Will build slower with imported labor
+		-> Can still be built even if no domestic labor
+		-> Time and labor cost scale with size / complexity (height/industry/etc)
